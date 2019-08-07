@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/user
+    username: postgres
+    password: 123456
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#management:
+#  endpoints:
+#    web:
+#      cors:
+#        allowed-origins: http://localhost
+#        allowed-methods: GET,POST
+
+login:
+  name: admin
+  password: admin
