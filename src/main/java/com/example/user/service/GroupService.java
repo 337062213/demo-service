@@ -9,7 +9,7 @@ public interface GroupService {
     
     Group insertGroup(Group group);
     
-    void deleteGroup(String gId);
+    Integer deleteGroup(String gId);
     
     Group updateGroup(Group group);
     

@@ -12,30 +12,30 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Insert("insert into t_user(id, name, age, gid) values(#{id}, #{name}, #{age}, #{gid})")
+    @Insert("insert into p_user(fid, name, age, gid, sex, address, creatTime, updateTime) values(#{fid}, #{name}, #{age}, #{gid}, #{sex}, #{address}, #{creatTime}, #{updateTime})")
 //    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     void insertUser(User user);
 
-    @Delete("delete from t_user where id = #{uId}")
-    void deleteUser(String uId);
+    @Delete("delete from p_user where fid = #{uId}")
+    Integer deleteUser(String uId);
 
-    @Update("update t_user set name=#{name},age=#{age},gid=#{gid} where id=#{id}")
+    @Update("update p_user set name=#{name}, age=#{age}, gid=#{gid}, sex=#{sex}, address=#{address}, updateTime=#{updateTime} where fid=#{fid}")
     int updateUser(User user);
 
-    @Select("select * from t_user where id = #{id}")
-    User findUserById(@Param("id") String uId);
+    @Select("select * from p_user where fid = #{uId}")
+    User findUserById(String uId);
 
-    @Select("select * from t_user limit #{pageSize} offset #{pageSize} * #{pageNo}")
+    @Select("select * from p_user limit #{pageSize} offset #{pageSize} * #{pageNo}")
     List<User> findAllUser(Page page);
 
-    @Select("select u.*,g.name as groupname from t_user u left join t_group g on u.gid=g.id where u.id=#{id}")
+    @Select("select u.*,g.name as groupname from p_user u left join t_group g on u.gid=g.id where u.fid=#{id}")
     @Results({
             @Result(property = "uid",  column = "id", javaType = String.class),
             @Result(property = "groupName",  column = "groupname", javaType = String.class),
     })
-    UserGroupVo findUserGroupVo(String uid);
+    UserGroupVo findUserGroupVo(String id);
 
-    @Select("select * from t_user where gid=#{gid}")
+    @Select("select * from p_user where gid=#{gid}")
     List<User> findUserByGid(String gid);
 
 
@@ -45,7 +45,6 @@ public interface UserMapper {
     @SelectProvider(type = mybatisSql.class, method = "findUserByCondition")
     List<User> findUserByCondition(User user);
 
-//    @Select("select * from t_user order by id")
     @SelectProvider(type = mybatisSql.class, method = "findAllUserTotal")
     List<User> findAllUserTotal(String name, String gid);
 
@@ -55,9 +54,9 @@ public interface UserMapper {
 
             return new SQL(){{
                 SELECT("*");
-                FROM("t_user");
-                if(user.getId() != null) {
-                    WHERE("id = #{id}");
+                FROM("p_user");
+                if(user.getFid() != null) {
+                    WHERE("fid = #{fid}");
                 }
                 if(user.getAge() != null) {
                     WHERE("age = #{age}");
@@ -73,7 +72,7 @@ public interface UserMapper {
 
             return new SQL(){{
                 SELECT("*");
-                FROM("t_user");
+                FROM("p_user");
                 if(!StringUtils.isEmpty(name)) {
                     WHERE("name like #{name}");
                 }

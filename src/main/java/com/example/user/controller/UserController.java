@@ -43,19 +43,9 @@ public class UserController {
 
     }
 
-    @GetMapping("")
+    @GetMapping("/findByParams")
     public List<User> findAllUser(@RequestParam(defaultValue = "") String name,
                                   @RequestParam(defaultValue = "") String gid) {
-//        Page page = new Page(pageNo, pageSize);
-//        List<User> users = userService.findAllUser(page);
-//        logger.info("findAllUser =>" + users.toString());
-//
-//        RetObject retObject = new RetObject();
-//        retObject.setList(users);
-//        retObject.setTotal(userService.findAllUser().size());
-//        retObject.setPage(pageNo);
-//
-//        return retObject;
 
         List<User> users = userService.findAllUser(name,gid);
         return users;

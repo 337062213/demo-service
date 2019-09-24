@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,20 +22,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User insertUser(User user) {
-        user.setId(UUID.randomUUID().toString().replaceAll("-",""));
+        user.setFid(UUID.randomUUID().toString().replaceAll("-",""));
+        Date date = new Date();
+        user.setCreatTime(date);
+        user.setUpdateTime(date);
         userMapper.insertUser(user);
-        return userMapper.findUserById(user.getId());
+        return userMapper.findUserById(user.getFid());
     }
 
     @Override
-    public void deleteUser(String uId) {
-        userMapper.deleteUser(uId);
+    public Integer deleteUser(String uId) {
+        return userMapper.deleteUser(uId);
     }
 
     @Override
     public User updateUser(User user) {
+        user.setUpdateTime(new Date());
         userMapper.updateUser(user);
-        return userMapper.findUserById(user.getId());
+        return userMapper.findUserById(user.getFid());
     }
 
     @Override

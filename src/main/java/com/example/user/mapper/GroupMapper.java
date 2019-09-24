@@ -10,28 +10,28 @@ import java.util.List;
 @Mapper
 public interface GroupMapper {
     
-    @Insert("insert into t_group(id,name) values(#{id},#{groupName})")
+    @Insert("insert into p_group(id, name, creatTime, updateTime) values(#{id}, #{groupName}, #{creatTime}, #{updateTime})")
     void insertGroup(Group group);
 
-    @Delete("delete from t_group where id = #{gId}")
-    void deleteGroup(String gId);
+    @Delete("delete from p_group where id = #{gId}")
+    Integer deleteGroup(String gId);
 
-    @Update("update t_group set name=#{groupName} where id=#{id}")
+    @Update("update p_group set name=#{groupName}, updateTime=#{updateTime} where id=#{id}")
     int updateGroup(Group group);
 
-    @Select("select * from t_group where id = #{id}")
+    @Select("select * from p_group where id = #{id}")
     @Results({
             @Result(property = "groupName",  column = "name", javaType = String.class),
     })
     Group findGroupById(@Param("id") String uId);
 
-    @Select("select * from t_group")
+    @Select("select * from p_group")
     @Results({
             @Result(property = "groupName",  column = "name", javaType = String.class),
     })
     List<Group> findAllGroup();
 
-    @Select("select * from t_group where id=#{gid}")
+    @Select("select * from p_group where id=#{gid}")
     @Results({
             @Result(property="gid",column="id"),
             @Result(property = "groupName",  column = "name", javaType = String.class),
