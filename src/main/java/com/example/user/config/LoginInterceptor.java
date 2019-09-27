@@ -1,7 +1,5 @@
 package com.example.user.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -13,8 +11,6 @@ import java.io.IOException;
 
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Value("${login.name}")
     private String name;
