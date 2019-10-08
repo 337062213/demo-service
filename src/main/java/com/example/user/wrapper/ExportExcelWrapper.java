@@ -1,10 +1,10 @@
 package com.example.user.wrapper;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Collection; 
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
-
 import com.example.user.utils.ExportExcelUtilRemote;
  
  
@@ -36,6 +36,8 @@ public class ExportExcelWrapper<T> extends ExportExcelUtilRemote<T> {
                 response.setCharacterEncoding("utf-8");
                 exportExcel2007(title, headers, dataset, response, "yyyy-MM-dd HH:mm:ss");
             }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

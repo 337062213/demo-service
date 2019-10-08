@@ -59,9 +59,6 @@ public class GroupControllerTest {
     @Test
     public void addGroup() throws Exception {
 
-//        Group group = new Group();
-//        group.setGroupName("一组");
-
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("groupName", "测试组一");
 

@@ -12,9 +12,9 @@ import com.example.user.config.FileProperties;
 @EnableConfigurationProperties({
     FileProperties.class
 })
-public class UserApplication {
+public class DemoServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(UserApplication.class, args);
+        SpringApplication.run(DemoServiceApplication.class, args);
     }
 }
