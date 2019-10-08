@@ -10,6 +10,8 @@ HELP.md
 .settings
 .springBeans
 .sts4-cache
+.class
+/.settings/
 
 ### IntelliJ IDEA ###
 .idea
