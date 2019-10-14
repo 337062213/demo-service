@@ -42,21 +42,23 @@
 			<scope>runtime</scope>
 		</dependency>
         <!-- postgresql 数据库 -->
-		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- 注册微服务 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
+		<!-- 运行测试环境 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- 开发工具 -->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-devtools</artifactId>
@@ -92,6 +94,7 @@
 		    <artifactId>itextpdf</artifactId>
 		    <version>5.5.13</version>
 		</dependency>
+		<!--  pdf 语言本地化-->
 		<dependency>
 		    <groupId>com.itextpdf</groupId>
 		    <artifactId>itext-asian</artifactId>
@@ -101,6 +104,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<!-- for managing database version -->
+		<dependency>
+		    <groupId>org.flywaydb</groupId>
+		    <artifactId>flyway-core</artifactId>
+		    <version>5.2.4</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
@@ -128,6 +137,12 @@
                         <version>1.2.6.RELEASE</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <!-- flyway maven plugin -->
+            <plugin>
+			    <groupId>org.flywaydb</groupId>
+			    <artifactId>flyway-maven-plugin</artifactId>
+			    <version>5.2.4</version>
             </plugin>
 		</plugins>
 	</build>
