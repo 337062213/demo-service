@@ -14,14 +14,15 @@ spring:
     # 设置 spring.flyway.baseline-on-migrate 为 true 后, flyway 将在需要 baseline 的时候, 自动执行一次 baseline.
     baseline-on-migrate: true
     # 指定 baseline 的版本号,缺省值为 1, 低于该版本号的 SQL 文件, migrate 的时候被忽略.
-    baseline-version: 1.0.0
+    baseline-version: 0.0.0
     # Encoding of SQL migrations (default: UTF-8)
     encoding: UTF-8
     # 设定 flyway 的 metadata 表名, 缺省为 flyway_schema_history
     table: flyway_schema_history
     # 开发环境最好开启 outOfOrder, 生产环境关闭 outOfOrder
     out-of-order: false
-    check-location: false    
+    check-location: false
+    baseline-description: initialize    
     
   application:
     name: demo-service
