@@ -1,7 +1,7 @@
 package com.example.user.controller;
 
 import com.example.user.entity.Group;
-import com.example.user.service.GroupService;
+import com.example.user.service.IGroupService;
 import com.example.user.vo.GroupUserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ public class GroupController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private GroupService groupService;
+    private IGroupService groupService;
 
     @GetMapping("/{gid}")
     public Group findGroupById(@PathVariable("gid") String gid) {

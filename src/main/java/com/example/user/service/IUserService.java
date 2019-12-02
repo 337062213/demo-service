@@ -6,7 +6,7 @@ import com.example.user.vo.UserGroupVo;
 
 import java.util.List;
 
-public interface UserService {
+public interface IUserService {
 
     User insertUser(User user);
 

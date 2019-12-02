@@ -28,10 +28,10 @@ public interface UserMapper {
     @Select("select * from p_user limit #{pageSize} offset #{pageSize} * #{pageNo}")
     List<User> findAllUser(Page page);
 
-    @Select("select u.*,g.name as groupname from p_user u left join t_group g on u.gid=g.id where u.fid=#{id}")
+    @Select("select u.fid, u.name, u.age, g.name as groupName, g.id as gid from p_user u left join t_group g on u.gid=g.id where u.fid=#{id}")
     @Results({
-            @Result(property = "uid",  column = "id", javaType = String.class),
-            @Result(property = "groupName",  column = "groupname", javaType = String.class),
+            @Result(property = "uid",  column = "fid", javaType = String.class),
+            @Result(property = "groupName",  column = "groupName", javaType = String.class),
     })
     UserGroupVo findUserGroupVo(String id);
 

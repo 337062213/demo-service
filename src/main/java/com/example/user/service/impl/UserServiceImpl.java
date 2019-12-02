@@ -2,7 +2,7 @@ package com.example.user.service.impl;
 
 import com.example.user.entity.User;
 import com.example.user.mapper.UserMapper;
-import com.example.user.service.UserService;
+import com.example.user.service.IUserService;
 import com.example.user.vo.Page;
 import com.example.user.vo.UserGroupVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserMapper userMapper;

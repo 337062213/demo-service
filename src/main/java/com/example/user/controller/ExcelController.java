@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.user.entity.User;
-import com.example.user.service.UserService;
+import com.example.user.service.IUserService;
 import com.example.user.utils.ExportExcelUtilLocal;
 import com.example.user.wrapper.ExportExcelWrapper;
 
@@ -22,7 +22,7 @@ public class ExcelController {
      private Logger logger = LoggerFactory.getLogger(this.getClass());
     
      @Autowired
-     private UserService userService;
+     private IUserService userService;
  
      @RequestMapping("/get/user/{version}")
      public void getExcel( @PathVariable("version") String version, HttpServletResponse response) throws Exception {

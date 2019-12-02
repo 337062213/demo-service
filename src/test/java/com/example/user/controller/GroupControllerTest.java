@@ -1,7 +1,8 @@
 package com.example.user.controller;
 
 import com.example.user.entity.Group;
-import com.example.user.service.GroupService;
+import com.example.user.service.IGroupService;
+
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
@@ -28,7 +29,7 @@ public class GroupControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private GroupService groupService;
+    private IGroupService groupService;
 
     private Group groupTemp;
 

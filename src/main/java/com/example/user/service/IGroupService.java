@@ -5,7 +5,7 @@ import com.example.user.vo.GroupUserVo;
 
 import java.util.List;
 
-public interface GroupService {
+public interface IGroupService {
     
     Group insertGroup(Group group);
     

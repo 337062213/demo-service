@@ -1,7 +1,7 @@
 package com.example.user.controller;
 
 import com.example.user.entity.User;
-import com.example.user.service.IUserService;
+import com.example.user.rpc.IUserServiceFeign;
 import com.example.user.vo.UserGroupVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,36 +45,36 @@ import java.util.List;
  * @date 2019/10/15
  */
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/user/feign")
 @CrossOrigin(origins = {"http://localhost:8000","http://localhost:8001","http://localhost:8002","http://localhost:8003","http://localhost:8004"},maxAge = 3600)
-public class UserController {
+public class UserControllerFeign {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private IUserService userService;
+    private IUserServiceFeign userServiceFeign;
 
     @GetMapping("/{uid}")
     public User findUserById(@PathVariable("uid") String uid) {
-        User user = userService.findUserById(uid);
+        User user = userServiceFeign.findUserById(uid);
         logger.info("findUserById =>" + user.toString());
         return user;
     }
 
     @PostMapping("/add")
     public User addUser(@RequestBody User user) {
-        return userService.insertUser(user);
+        return userServiceFeign.insertUser(user);
 
     }
 
     @PostMapping("/update")
     public User updateUser(@RequestBody User user) {
-        return userService.updateUser(user);
+        return userServiceFeign.updateUser(user);
     }
 
     @GetMapping("/delete/{uid}")
     public void deleteUser(@PathVariable("uid") String uid) {
-        userService.deleteUser(uid);
+        userServiceFeign.deleteUser(uid);
 
     }
 
@@ -82,21 +82,21 @@ public class UserController {
     public List<User> findAllUser(@RequestParam(defaultValue = "") String name,
                                   @RequestParam(defaultValue = "") String gid) {
 
-        List<User> users = userService.findAllUser(name,gid);
+        List<User> users = userServiceFeign.findAllUser(name,gid);
         return users;
 
     }
 
     @GetMapping("/find/{uid}")
     public UserGroupVo findUserGroupVo(@PathVariable("uid") String uid) {
-        UserGroupVo userGroupVo = userService.findUserGroupVo(uid);
+        UserGroupVo userGroupVo = userServiceFeign.findUserGroupVo(uid);
         logger.info("findUserGroupVo =>" + userGroupVo.toString());
         return userGroupVo;
     }
 
     @GetMapping("/find")
     public List<User> findUserByCondition(User user) {
-        return userService.findUserByCondition(user);
+        return userServiceFeign.findUserByCondition(user);
     }
 
 

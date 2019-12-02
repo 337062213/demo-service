@@ -2,7 +2,7 @@ package com.example.user.service.impl;
 
 import com.example.user.entity.Group;
 import com.example.user.mapper.GroupMapper;
-import com.example.user.service.GroupService;
+import com.example.user.service.IGroupService;
 import com.example.user.vo.GroupUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @Transactional
-public class GroupServiceImpl implements GroupService {
+public class GroupServiceImpl implements IGroupService {
 
     @Autowired
     private GroupMapper groupMapper;
@@ -37,6 +37,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Group updateGroup(Group group) {
         group.setUpdateTime(new Date());
+        group.setId(UUID.randomUUID().toString().replaceAll("-",""));
         groupMapper.updateGroup(group);
         return groupMapper.findGroupById(group.getId());
     }
