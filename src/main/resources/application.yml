@@ -4,7 +4,7 @@ spring:
     # flyway 的 clean 命令会删除指定 schema 下的所有 table, 杀伤力太大了, 应该禁掉.
     clean-disabled: true
     # 启用或禁用 flyway
-    enabled: true
+    enabled: false
     # 设定 SQL 脚本的目录,多个路径使用逗号分隔, 比如取值为 classpath:db/migration
     locations: classpath:db/migration
     # File name prefix for SQL migrations.
@@ -34,11 +34,12 @@ spring:
   application:
     name: demo-service
   # 数据源配置
+  # username: postgres, password: root
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: root
+    username: ENC(bgycBQxsrtvJcyqyUmOeUixA2hZdCOVX)
+    password: ENC(9XNfyAmJJD6IfFnDg3nrsA==)
   servlet:
     multipart:
       # 开启 multipart 上传功能
@@ -60,7 +61,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8500/eureka/
-
+jasypt:
+  encryptor:
+    password: joe-test-demo
+    algorithm: PBEWithMD5AndDES
+    stringOutputType: base64
 file:
   upload-dir: /uploads/
 

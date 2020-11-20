@@ -8,6 +8,46 @@ import java.util.List;
 import java.util.Map;
 
 public class TreeUtil {
+    
+    /**
+     * 格式化list为树形list
+     * @param list 需要格式化的list
+     * @param flag true 表示全部展开，其他 表示不展开
+     * @param <T> 格式化的实体对象
+     * @return 格式化之后的list
+     */
+    public static <T extends com.example.user.entity.Tree> List<T> formatTree(List<T> list, Boolean flag) {
+
+        List<T> nodeList = new ArrayList<T>();  
+        for(T node1 : list){  
+            boolean mark = false;  
+            for(T node2 : list){  
+                if(node1.getParentKey()!=null && node1.getParentKey().equals(node2.getKey())){ 
+                    node2.setIsLeaf(false);
+                    mark = true;  
+                    if(node2.getChildren() == null) {
+                        node2.setChildren(new ArrayList<com.example.user.entity.Tree>());  
+                    }
+                    node2.getChildren().add(node1); 
+                    if (flag) {
+                        //默认已经全部展开
+                    } else{
+                        node2.setExpanded(false);
+                    }
+                    break;  
+                }  
+            }  
+            if(!mark){  
+                nodeList.add(node1);   
+                if (flag) {
+                    //默认已经全部展开
+                } else{
+                    node1.setExpanded(false);
+                }
+            }  
+        }
+        return nodeList;
+    }
 
     public static List<DefaultTree> build(List<DefaultTree> trees , String pid) {
         Map<String, List<DefaultTree>> map = new HashMap<>();
