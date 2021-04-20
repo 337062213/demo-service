@@ -1,5 +1,6 @@
  package com.example.user.utils;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -537,10 +538,10 @@ public class JsonUtil {
              "    \"澳门\": [\"花地玛堂区\", \"圣安多尼堂区\", \"大堂区\", \"望德堂区\", \"风顺堂区\", \"嘉模堂区\", \"圣方济各堂区\", \"其他\"],\r\n" + 
              "    \"台湾\": [\"台北市\", \"高雄市\", \"基隆市\", \"台中市\", \"台南市\", \"新竹市\", \"嘉义市\", \"台北县\", \"宜兰县\", \"新竹县\", \"桃园县\", \"苗栗县\", \"台中县\", \"彰化县\", \"南投县\", \"嘉义县\", \"云林县\", \"台南县\", \"高雄县\", \"屏东县\", \"台东县\", \"花莲县\", \"澎湖县\", \"其他\"]\r\n" + 
              "}";
-         Map res = new HashMap();
+         Map<String, Object> res = new HashMap<>();
          iteraJsonOrArray(test,res);
-         Set keySet = res.keySet();
-         Iterator iterator = keySet.iterator();
+         Set<String> keySet = res.keySet();
+         Iterator<String> iterator = keySet.iterator();
          while(iterator.hasNext()){
              String key = iterator.next().toString();
              Object val = res.get(key);
